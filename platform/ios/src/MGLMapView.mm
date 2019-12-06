@@ -2804,6 +2804,12 @@ public:
 
 - (id)accessibilityElementAtIndex:(NSInteger)index
 {
+    // Hack to disable this method to keep detox from burning all available cpu
+    // cycles traversing elements on a map.
+    //
+    // https://github.com/mapbox/mapbox-gl-native/issues/14324
+    return nil;
+
     if (self.calloutViewForSelectedAnnotation)
     {
         if (index == 0)
